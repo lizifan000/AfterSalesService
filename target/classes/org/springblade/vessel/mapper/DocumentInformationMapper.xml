@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.vessel.mapper.DocumentInformationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="documentInformationResultMap" type="org.springblade.vessel.entity.DocumentInformation">
+        <result column="id" property="id"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="policy_id" property="policyId"/>
+        <result column="link" property="link"/>
+        <result column="document_name" property="documentName"/>
+        <result column="is_deleted" property="isDeleted"/>
+    </resultMap>
+
+
+    <select id="selectDocumentInformationPage" resultMap="documentInformationResultMap">
+        select * from policy_document_information where is_deleted = 0
+    </select>
+
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.vessel.mapper.PolicyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="policyResultMap" type="org.springblade.vessel.entity.Policy">
+        <result column="id" property="id"/>
+        <result column="ship_no" property="shipNo"/>
+        <result column="ship_name" property="shipName"/>
+        <result column="delivery_date" property="deliveryDate"/>
+        <result column="policy_no" property="policyNo"/>
+        <result column="classification" property="classification"/>
+        <result column="responsibility" property="responsibility"/>
+        <result column="description" property="description"/>
+        <result column="policy_date" property="policyDate"/>
+        <result column="completion_date" property="completionDate"/>
+        <result column="updated_date" property="updatedDate"/>
+        <result column="policy_requirements" property="policyRequirements"/>
+        <result column="processing_progress" property="processingProgress"/>
+        <result column="cost" property="cost"/>
+        <result column="ship_description" property="shipDescription"/>
+        <result column="shipowner_name" property="shipownerName"/>
+        <result column="maintenance_parts" property="maintenanceParts"/>
+        <result column="manufactor" property="manufactor"/>
+        <result column="damage_cause" property="damageCause"/>
+        <result column="labormaterial_require" property="labormaterialRequire"/>
+        <result column="placedate_situation" property="placedateSituation"/>
+        <result column="equipment_location" property="equipmentLocation"/>
+        <result column="enclosure" property="enclosure"/>
+        <result column="serial_no" property="serialNo"/>
+        <result column="guarantee_engineer" property="guaranteeEngineer"/>
+        <result column="chief_engineer" property="chiefEngineer"/>
+        <result column="remarks" property="remarks"/>
+        <result column="picture_attachment" property="pictureAttachment"/>
+        <result column="major" property="major"/>
+
+        <!--        <result column="is_deleted" property="isDeleted"/>-->
+    </resultMap>
+
+
+
+    <select id="selectPolicyPage" resultMap="policyResultMap">
+        <!--     自定义查验 可以自己在这里添加相关查询条件 where-->
+        select * from policy_processing_progress
+    </select>
+
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.vessel.mapper.WarrantyClosingMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="informationResultMap" type="org.springblade.vessel.entity.WarrantyClosing">
+        <result column="id" property="id"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_dept" property="createDept"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="status" property="status"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="ship_no" property="shipNo"/>
+        <result column="ship_name" property="shipName"/>
+        <result column="ship_type" property="shipType"/>
+        <result column="shipowner_name" property="shipownerName"/>
+        <result column="classification_society" property="classificationSociety"/>
+        <result column="data_director" property="dataDirector"/>
+        <result column="service_director" property="serviceDirector"/>
+        <result column="delivery_date" property="deliveryDate"/>
+        <result column="year" property="year"/>
+        <result column="contact" property="contact"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="ship_description" property="shipDescription"/>
+        <result column="warranty_expiration_date" property="warrantyExpirationDate"/>
+        <result column="start_talks_date" property="startTalksDate"/>
+        <result column="owner_quote_date" property="ownerQuoteDate"/>
+        <result column="agreement_signing_date" property="agreementSigningDate"/>
+        <result column="closing_cost" property="closingCost"/>
+    </resultMap>
+
+
+    <select id="selectWarrantyClosingPage" resultMap="informationResultMap">
+        select * from ship_information where is_deleted = 0
+    </select>
+
+
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.vessel.mapper.OwnerInformationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="ownerInformationResultMap" type="org.springblade.vessel.entity.OwnerInformation">
+        <result column="id" property="id"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_dept" property="createDept"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="status" property="status"/>
+        <result column="shipowner_name" property="shipownerName"/>
+        <result column="shipowner_contact" property="shipownerContact"/>
+        <result column="shipowner_contact_information" property="shipownerContactInformation"/>
+        <result column="maintenance_director" property="maintenanceDirector"/>
+        <result column="maintenance_contact_information" property="maintenanceContactInformation"/>
+        <result column="shipowner_address" property="shipownerAddress"/>
+        <result column="is_deleted" property="isDeleted"/>
+    </resultMap>
+
+
+    <select id="selectOwnerInformationPage" resultMap="ownerInformationResultMap">
+        select * from ship_owner_information where is_deleted = 0
+    </select>
+
+</mapper>

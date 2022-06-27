@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.vessel.mapper.SupplierInformationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="supplierInformationResultMap" type="org.springblade.vessel.entity.SupplierInformation">
+        <result column="id" property="id"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_dept" property="createDept"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="status" property="status"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="supplier_name" property="supplierName"/>
+        <result column="supplier_type" property="supplierType"/>
+        <result column="contact" property="contact"/>
+        <result column="contact_information" property="contactInformation"/>
+    </resultMap>
+
+    <resultMap id="treeNodeResultMap" type="org.springblade.core.tool.node.TreeNode">
+        <id column="id" property="id"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="title" property="title"/>
+        <result column="value" property="value"/>
+        <result column="key" property="key"/>
+        <result column="has_children" property="hasChildren"/>
+    </resultMap>
+
+    <resultMap id="resourceVOResultMap" type="org.springblade.vessel.vo.SupplierInformationVO">
+        <id column="id" property="id"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="has_children" property="hasChildren"/>
+    </resultMap>
+
+    <select id="selectSupplierInformationPage" resultMap="supplierInformationResultMap">
+        select * from ship_supplier_information where is_deleted = 0
+    </select>
+
+    <select id="tree" resultMap="treeNodeResultMap">
+        select id, parent_id, supplier_name as title, id as "value", id as "key",create_user from ship_supplier_information where is_deleted = 0 and status = 1
+        ORDER BY id
+    </select>
+
+    <select id="lazyList" resultMap="resourceVOResultMap">
+        SELECT
+        res.* ,
+        (
+        SELECT
+        CASE WHEN count(1) > 0 THEN 1 ELSE 0 END
+        FROM
+        ship_supplier_information
+        WHERE
+        parent_id = res.id and is_deleted = 0
+        ) AS "has_children"
+        FROM
+        ship_supplier_information res
+        WHERE res.is_deleted = 0
+        <if test="param1!=null">
+            and res.parent_id = #{param1}
+        </if>
+        <if test="param2.supplierName!=null and param2.supplierName!=''">
+            and res.supplier_name like concat(concat('%', #{param2.supplierName}),'%')
+        </if>
+        ORDER BY res.id
+    </select>
+
+    <select id="selectSingleSupplier" resultMap="supplierInformationResultMap">
+        select *
+        from ship_supplier_information
+        where parent_id = 0
+    </select>
+</mapper>

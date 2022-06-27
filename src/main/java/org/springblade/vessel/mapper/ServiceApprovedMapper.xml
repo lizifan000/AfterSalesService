@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.vessel.mapper.ServiceApprovedMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="serviceApprovedResultMap" type="org.springblade.vessel.entity.ServiceApproved">
+        <result column="id" property="id"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_dept" property="createDept"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="status" property="status"/>
+        <result column="ship_no" property="shipNo"/>
+        <result column="ship_name" property="shipName"/>
+        <result column="delivery_date" property="deliveryDate"/>
+        <result column="policy_no" property="policyNo"/>
+        <result column="description" property="description"/>
+        <result column="policy_date" property="policyDate"/>
+        <result column="completion_date" property="completionDate"/>
+        <result column="updated_date" property="updatedDate"/>
+        <result column="policy_requirements" property="policyRequirements"/>
+        <result column="waybill_number_of_spareparts" property="waybillNumberOfSpareparts"/>
+        <result column="manufactor" property="manufactor"/>
+        <result column="picture_attachment" property="pictureAttachment"/>
+        <result column="major" property="major"/>
+        <result column="enclosure" property="enclosure"/>
+        <result column="service_director" property="serviceDirector"/>
+<!--        <collection property="progressList" column="id" select="org.springblade.desk.mapper.ProgressMapper.selectProgressPage" />-->
+
+    </resultMap>
+
+    <select id="selectServiceApprovedPage" resultMap="serviceApprovedResultMap">
+        select * from policy_service_approved where is_deleted = 0
+    </select>
+
+
+
+
+
+</mapper>
